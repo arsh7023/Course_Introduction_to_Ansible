@@ -1,0 +1,10 @@
+---
+- name: "challenge1"
+  hosts: hosts_ali
+  tasks:
+   - name: challenge1 ansible task 1
+     pip:
+       name: ansible
+       virtualenv: /Users/ashamakhy/Documents/projects/Course_Introduction_to_Ansible/challenge1
+
+

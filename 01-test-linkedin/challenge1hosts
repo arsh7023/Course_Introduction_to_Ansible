@@ -1,0 +1,6 @@
+[hosts_ali]
+host1
+
+[all:vars]
+ansible_connection=local
+

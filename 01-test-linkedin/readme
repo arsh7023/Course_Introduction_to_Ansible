@@ -1,0 +1,60 @@
+-i: means inventory
+
+ansible-playbook -i hosts demo-play.yml
+
+execute: play1,play2, play3 , then=> task1, task2, task3
+
+If one on the play fails execute stops:
+   - name: demo task 2
+     fail:
+       msg: "this is task 2"
+
+Works:
+   - name: demo task 2
+     debug:
+       msg: "this is task 2"
+
+====fails only for
+     fail:
+       msg: "this is task 2"
+     when: inventory_hostname == "hosts"
+
+
+======becuase serial: it runs all tasks (task1,task2) for host3 , then host4
+======= if remove serial, then it runs first task for host3,host4,host5 , then second task for host3,host4,host5
+- name: "Do a demo2"
+  hosts: groupB
+  serial: 1
+
+
+======Run pip install in ansible
+---
+- name: "challenge1"
+  hosts: hosts_ali
+  tasks:
+   - name: challenge1 ansible task 1
+     pip:
+       name: ansible
+       virtualenv: /Users/ashamakhy/Documents/projects/Course_Introduction_to_Ansible/challenge1
+
+
+  docker_container:
+    name: mydata
+    image: busybox
+    volumes:
+      - /data
+
+=================
+ansible -i webapp web -m debug -a "msg='shutdown -r now'"
+
+ansible-doc copy
+
+ansible -i hosts host1 -m command -a "uname -r"
+
+
+ansible -i hostsnew -u alireza all -m ping
+
+ansible -i hostsnew -u alireza all -m  copy -a 'src=readme dest=/home/alireza' ///copy module using the -m option and specify the required arguments using the -a option
+
+
+ansible-playbook -i hostsnew -u alireza copy-play.yml

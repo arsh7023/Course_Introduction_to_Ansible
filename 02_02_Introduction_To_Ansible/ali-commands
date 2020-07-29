@@ -1,35 +1,36 @@
 ansible --list-hosts webservers
  ansible --list-hosts "*"
  ansible --list-hosts "app*"
- 
- ansible -m ping all		
- 
+
+ ansible -m ping all
+
  ansible -m shell -a "uname" webservers:loadbalancers
- 
+
  ansible -m command -a "/bin/false" \!local
 
- 
+
+//run play-book
   ansible-playbook ali-playbook.yml
-  
-  
+
+
   ipaddress/balancer-manager
-  
- 
+
+
  adhoc command:   -a: argument -become: root =>
- 
+
  ansible -m service -a "name=httpd state=stopped" -become loadbalancers
  ansible -m service -a "name=httpd state=started" -become loadbalancers
- 
+
  ansible -m setup app1
- 
- 
+
+
  ansible-playbook setup-playbook.yml --check==dry run just detects changes
-  
+
  ansible-playbook setup-playbook.yml --tags upload = only run task with upload tag
- 
+
   ansible-playbook setup-playbook.yml --skip-tags upload = skip task with upload tag
-  
+
   ansible-vault create vars/secret-variables.yml
   ansible-vault edit vars/secret-variables.yml
-   
+
  ansible-galaxy roles/webservers init ??

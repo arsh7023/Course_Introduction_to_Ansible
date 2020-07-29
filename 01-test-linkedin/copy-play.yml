@@ -1,0 +1,8 @@
+---
+- name: "copy demo"
+  hosts: webservers
+  tasks:
+   - name: copy task 1
+     copy:
+       src: copy-play.yml
+       dest: /home/alireza
